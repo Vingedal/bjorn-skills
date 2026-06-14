@@ -68,4 +68,3 @@ folders are ignored by every tool except Claude Code.
   `Source/tSQLt.FakeTable.ssp.sql`). The reference docs publish exact procedure signatures — an invented
   parameter produces broken SQL for users.
 - JSON manifests are UTF-8 without BOM; non-ASCII (e.g. `Björn`) is fine.
-- `WHERE-TO-REGISTER.md` is a git-ignored working file (a registration checklist), not published content.
