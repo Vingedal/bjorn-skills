@@ -76,6 +76,9 @@ tSQLt.UndoTestDoubles       [@Force]
 A spy records each call in a table `<Schema>.<Proc>_SpyProcedureLog` with one column per parameter
 (named without the `@`) plus an internal `_id_` column.
 
+`@SchemaName` (on `FakeTable` and `ApplyConstraint`) is a deprecated legacy parameter, kept only for
+backward compatibility — pass a two-part `'schema.object'` name instead.
+
 ## Annotations
 Declared as a comment on the line **immediately above** `CREATE PROCEDURE` (tSQLt reads them from the
 stored procedure definition):

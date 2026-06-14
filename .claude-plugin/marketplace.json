@@ -1,9 +1,9 @@
 {
   "name": "bjorn-skills",
-  "description": "Cross-tool AI agent skills by Bjorn Vingedal - usable in Claude Code, Codex CLI, Gemini CLI, Cursor, and GitHub Copilot.",
+  "description": "Cross-tool AI agent skills by Björn Vingedal - usable in Claude Code, Codex CLI, Gemini CLI, Cursor, and GitHub Copilot.",
   "version": "1.0.0",
   "owner": {
-    "name": "Bjorn Vingedal"
+    "name": "Björn Vingedal"
   },
   "plugins": [
     {
