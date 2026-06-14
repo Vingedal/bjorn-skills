@@ -1,15 +1,16 @@
 # Assertions — which one to use
 
 ## Scalars
-- **`AssertEquals @Expected, @Actual, [@Message]`** — equality of two scalar values (`sql_variant`).
-  Make the expected value the **same type** as the actual (e.g. both `DECIMAL(18,2)`) — see gotchas.
+- **`AssertEquals @Expected, @Actual, [@Message]`** — equality of two scalar values (`sql_variant`);
+  two `NULL`s count as equal. Make the expected value the **same type** as the actual (e.g. both
+  `DECIMAL(18,2)`) — see gotchas.
   ```sql
   DECLARE @Expected DECIMAL(18,2) = 25.00;
   EXEC tSQLt.AssertEquals @Expected = @Expected, @Actual = @Total;
   ```
 - **`AssertNotEquals @Expected, @Actual, [@Message]`** — the two values must differ.
-- **`AssertEqualsString @Expected, @Actual, [@Message]`** — string compare with clearer diff output and
-  NULL-safety.
+- **`AssertEqualsString @Expected, @Actual, [@Message]`** — string compare (`NVARCHAR`) with clearer diff
+  output for text. Like `AssertEquals`, it treats two `NULL`s as equal.
 - **`AssertLike @ExpectedPattern, @Actual, [@Message]`** — the actual must match a SQL `LIKE` pattern.
 
 ## Tables and result sets
