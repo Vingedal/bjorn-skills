@@ -1,0 +1,12 @@
+{
+  "name": "tsqlt-testing",
+  "description": "Author, run, and debug tSQLt unit tests for SQL Server.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Bjorn Vingedal"
+  },
+  "homepage": "https://github.com/Vingedal/bjorn-skills",
+  "repository": "https://github.com/Vingedal/bjorn-skills",
+  "license": "MIT",
+  "keywords": ["tsqlt", "sql-server", "mssql", "unit-testing", "tdd"]
+}

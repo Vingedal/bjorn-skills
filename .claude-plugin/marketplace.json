@@ -7,13 +7,12 @@
   },
   "plugins": [
     {
-      "name": "bjorn-skills",
-      "source": "./",
-      "description": "All of Bjorn Vingedal's cross-tool agent skills. Currently: tsqlt-testing (author, run, and debug tSQLt unit tests for SQL Server).",
-      "skills": ["./skills"],
-      "strict": false,
+      "name": "tsqlt-testing",
+      "source": "./skills/tsqlt-testing",
+      "description": "Author, run, and debug tSQLt unit tests for SQL Server - fake/spy dependencies, assert on results, expect exceptions, run suites.",
+      "category": "database",
       "license": "MIT",
-      "keywords": ["agent-skills", "tsqlt", "sql-server", "mssql", "unit-testing", "tdd"],
+      "keywords": ["tsqlt", "sql-server", "mssql", "unit-testing", "tdd", "database-testing"],
       "homepage": "https://github.com/Vingedal/bjorn-skills"
     }
   ]
