@@ -1,0 +1,12 @@
+{
+  "name": "xquik",
+  "description": "Plan and implement Xquik X data extraction, automation, REST API, webhook, and MCP workflows.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Xquik"
+  },
+  "homepage": "https://docs.xquik.com",
+  "repository": "https://github.com/Xquik-dev/x-twitter-scraper",
+  "license": "MIT",
+  "keywords": ["xquik", "x-twitter-scraper", "x-api", "twitter", "mcp", "webhooks"]
+}
