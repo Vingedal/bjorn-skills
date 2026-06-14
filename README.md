@@ -11,29 +11,36 @@ Cursor, and GitHub Copilot**. No conversion needed.
 
 | Skill | What it does |
 |---|---|
-| [`tsqlt-testing`](plugins/tsqlt-testing/skills/tsqlt-testing/SKILL.md) | Author, run, and debug [tSQLt](https://tsqlt.org) unit tests for SQL Server — structure tests as Assemble/Act/Assert, fake or spy out dependencies (tables, functions, procedures), assert on query results, expect exceptions, and run suites. |
+| [`tsqlt-testing`](skills/tsqlt-testing/SKILL.md) | Author, run, and debug [tSQLt](https://tsqlt.org) unit tests for SQL Server — structure tests as Assemble/Act/Assert, fake or spy out dependencies (tables, functions, procedures), assert on query results, expect exceptions, and run suites. |
 
 ## Install
+
+### skills.sh (any supported agent)
+
+[skills.sh](https://skills.sh) is a package manager for Agent Skills. From your project directory:
+
+```bash
+npx skills add Vingedal/bjorn-skills
+```
 
 ### Claude Code
 
 Add this repo as a [plugin marketplace](https://code.claude.com/docs/en/plugin-marketplaces), then
-install the skill:
+install the bundle:
 
 ```text
 /plugin marketplace add Vingedal/bjorn-skills
-/plugin install tsqlt-testing@bjorn-skills
+/plugin install bjorn-skills@bjorn-skills
 ```
 
-To update later: `/plugin marketplace update bjorn-skills`.
+Update later with `/plugin marketplace update bjorn-skills`.
 
 ### Other agents (Codex CLI, Gemini CLI, Cursor, Copilot)
 
-These tools read Agent Skills from a `skills/` directory. Copy the skill folder
-`plugins/tsqlt-testing/skills/tsqlt-testing/` into your tool's skills directory (paths vary by
-tool and version — check each tool's current docs):
+These tools read Agent Skills from a `skills/` directory. Copy the `skills/tsqlt-testing/` folder
+into your tool's skills directory (paths vary by tool and version — check each tool's current docs):
 
-| Tool | Copy the skill folder to | Docs |
+| Tool | Copy `skills/tsqlt-testing/` to | Docs |
 |---|---|---|
 | OpenAI Codex CLI | `~/.codex/skills/tsqlt-testing/` | [Codex skills](https://developers.openai.com/codex/skills) |
 | Google Gemini CLI | `~/.gemini/skills/tsqlt-testing/` | [Gemini CLI skills](https://geminicli.com/docs/cli/skills/) |
@@ -45,46 +52,38 @@ For example, with Git:
 
 ```bash
 git clone https://github.com/Vingedal/bjorn-skills
-cp -r bjorn-skills/plugins/tsqlt-testing/skills/tsqlt-testing ~/.codex/skills/
+cp -r bjorn-skills/skills/tsqlt-testing ~/.codex/skills/
 ```
-
-The folder you copy is always `plugins/tsqlt-testing/skills/tsqlt-testing/`, regardless of tool.
 
 ## Repository layout
 
 ```
 bjorn-skills/
-├─ .claude-plugin/
-│  └─ marketplace.json                 # lists the plugins in this marketplace
-└─ plugins/
-   └─ tsqlt-testing/
-      ├─ .claude-plugin/plugin.json     # plugin manifest
-      └─ skills/
-         └─ tsqlt-testing/
-            ├─ SKILL.md                 # the skill (entry point)
-            └─ reference/               # progressive-disclosure docs, loaded on demand
+├─ skills/
+│  └─ tsqlt-testing/
+│     ├─ SKILL.md            # the skill (entry point)
+│     └─ reference/          # progressive-disclosure docs, loaded on demand
+└─ .claude-plugin/
+   └─ marketplace.json       # exposes skills/ as a Claude Code plugin
 ```
 
-Each skill is packaged as its own plugin so it can be installed independently in Claude Code, while
-the `skills/<name>/` folder stays a portable unit any agent can copy.
+Skills live at the top level so any agent can copy a `skills/<name>/` folder directly and skills.sh
+finds them in a standard location. `marketplace.json` bundles everything under `skills/` into one
+installable Claude Code plugin.
 
 ## Add a skill
 
-1. Create `plugins/<skill>/skills/<skill>/SKILL.md` (YAML frontmatter with `name` + `description`,
-   then Markdown instructions; add a `reference/` folder for details loaded on demand).
-2. Add `plugins/<skill>/.claude-plugin/plugin.json` (`name`, `description`, `version`).
-3. Add a plugin entry to `.claude-plugin/marketplace.json`.
-4. Run the validator below.
+Create `skills/<name>/SKILL.md` — YAML frontmatter with `name` + `description`, then Markdown
+instructions; add a `reference/` folder for details loaded on demand. That's it: it's picked up by
+skills.sh and the copy-to-any-tool flow, and auto-included in the Claude Code bundle (no
+`marketplace.json` change needed). Run the validator below, then commit.
 
 ## Validate
 
 ```bash
-python3 .github/scripts/validate_skills.py
+python3 .github/scripts/validate_skills.py    # frontmatter + JSON checks (also runs in CI)
+claude plugin validate .                       # validate the Claude Code marketplace manifest
 ```
-
-Checks that every `SKILL.md` has frontmatter with a `description`, and that all `marketplace.json` /
-`plugin.json` files are valid JSON. CI runs this on every push and pull request. To validate the
-Claude Code manifests specifically, run `claude plugin validate .` from the repo root.
 
 ## License
 
