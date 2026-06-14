@@ -26,11 +26,11 @@ npx skills add Vingedal/bjorn-skills
 ### Claude Code
 
 Add this repo as a [plugin marketplace](https://code.claude.com/docs/en/plugin-marketplaces), then
-install the bundle:
+install the skill you want — **each skill is its own plugin**, so you get only what you ask for:
 
 ```text
 /plugin marketplace add Vingedal/bjorn-skills
-/plugin install bjorn-skills@bjorn-skills
+/plugin install tsqlt-testing@bjorn-skills
 ```
 
 Update later with `/plugin marketplace update bjorn-skills`.
@@ -55,28 +55,36 @@ git clone https://github.com/Vingedal/bjorn-skills
 cp -r bjorn-skills/skills/tsqlt-testing ~/.codex/skills/
 ```
 
+(The `.claude-plugin/` folder inside a skill is only used by Claude Code's marketplace; other tools ignore it.)
+
 ## Repository layout
 
 ```
 bjorn-skills/
 ├─ skills/
 │  └─ tsqlt-testing/
-│     ├─ SKILL.md            # the skill (entry point)
-│     └─ reference/          # progressive-disclosure docs, loaded on demand
+│     ├─ SKILL.md                  # the skill (entry point)
+│     ├─ reference/                # progressive-disclosure docs, loaded on demand
+│     └─ .claude-plugin/
+│        └─ plugin.json            # makes this skill an installable Claude Code plugin
 └─ .claude-plugin/
-   └─ marketplace.json       # exposes skills/ as a Claude Code plugin
+   └─ marketplace.json             # lists each skill as its own plugin
 ```
 
 Skills live at the top level so any agent can copy a `skills/<name>/` folder directly and skills.sh
-finds them in a standard location. `marketplace.json` bundles everything under `skills/` into one
-installable Claude Code plugin.
+finds them in a standard location. Each skill is exposed as its **own** Claude Code plugin
+(`<name>@bjorn-skills`), so you install only the skills you want.
 
 ## Add a skill
 
-Create `skills/<name>/SKILL.md` — YAML frontmatter with `name` + `description`, then Markdown
-instructions; add a `reference/` folder for details loaded on demand. That's it: it's picked up by
-skills.sh and the copy-to-any-tool flow, and auto-included in the Claude Code bundle (no
-`marketplace.json` change needed). Run the validator below, then commit.
+1. Create `skills/<name>/SKILL.md` — YAML frontmatter with `name` + `description`, then Markdown
+   instructions; add a `reference/` folder for details loaded on demand.
+2. Add `skills/<name>/.claude-plugin/plugin.json` (`name`, `description`, `version`) so Claude Code
+   can install it as a standalone plugin.
+3. Add a plugin entry to `.claude-plugin/marketplace.json` with `"source": "./skills/<name>"`.
+4. Run the validator below, then commit.
+
+(skills.sh and the copy-to-any-tool flow only need step 1 — the `SKILL.md`.)
 
 ## Validate
 
