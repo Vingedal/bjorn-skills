@@ -5,3 +5,6 @@ desktop.ini
 *.log
 .vscode/
 .idea/
+
+# Temporary working file — registration checklist, never published
+WHERE-TO-REGISTER.md
