@@ -17,10 +17,11 @@ Cursor, and GitHub Copilot**. No conversion needed.
 
 ### skills.sh (any supported agent)
 
-[skills.sh](https://skills.sh) is a package manager for Agent Skills. From your project directory:
+[skills.sh](https://skills.sh) is a package manager for Agent Skills. From your project directory, install
+the skill you want by name (run `npx skills add Vingedal/bjorn-skills --list` to see all available skills):
 
 ```bash
-npx skills add Vingedal/bjorn-skills
+npx skills add Vingedal/bjorn-skills --skill tsqlt-testing
 ```
 
 ### Claude Code

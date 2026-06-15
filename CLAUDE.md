@@ -9,7 +9,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 - copied directly into any agent's skills directory (Codex CLI, Gemini CLI, Cursor, Copilot, or Claude
   Code manual),
-- installed via skills.sh (`npx skills add Vingedal/bjorn-skills`), and
+- installed via skills.sh (`npx skills add Vingedal/bjorn-skills --skill <name>`), and
 - installed as a standalone Claude Code plugin (`<name>@bjorn-skills`).
 
 There is no application to build or run. The only executable code is the CI validator; everything else is
@@ -54,9 +54,16 @@ folders are ignored by every tool except Claude Code.
 1. Create `skills/<name>/SKILL.md` (+ optional `reference/`).
 2. Add `skills/<name>/.claude-plugin/plugin.json` (`name`, `description`, `version`).
 3. Add a `plugins[]` entry to `.claude-plugin/marketplace.json` with `"source": "./skills/<name>"`.
-4. Run the validator, then commit.
+4. **Update `README.md`**: add a row to the Skills table and the skill's per-skill install commands —
+   the skills.sh `npx skills add Vingedal/bjorn-skills --skill <name>` line and the Claude Code
+   `/plugin install <name>@bjorn-skills` line.
+5. Run the validator, then commit.
 
 (The cross-tool copy and skills.sh flows need only step 1 — the SKILL.md.)
+
+**`README.md` is the canonical, per-skill install reference.** There is intentionally no "install all
+skills" command — the skills are unrelated, so nobody installs the whole set. Enumerate each skill's
+install commands explicitly and keep that list in sync as skills are added (step 4 above).
 
 ## Gotchas
 
