@@ -13,6 +13,11 @@
   output for text. Like `AssertEquals`, it treats two `NULL`s as equal.
 - **`AssertLike @ExpectedPattern, @Actual, [@Message]`** — the actual must match a SQL `LIKE` pattern.
 
+**Pick the tightest assertion that matches the intent.** Use `AssertEqualsString` / `AssertEquals` when the
+**whole** value is the contract; reach for `AssertLike` only when a substring or shape is genuinely what
+matters. Beware over-loose patterns — `AssertLike '%3%'` for "the message mentions 3 particles" also passes
+on `'33'` or any stray `3`; prefer the exact message, or a pattern specific enough to mean what you intend.
+
 ## Tables and result sets
 - **`AssertEqualsTable @Expected, @Actual, [@Message], [@FailMsg]`** — compares the **data** in two tables
   (usually temp tables), ignoring row order. The canonical pattern:

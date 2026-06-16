@@ -32,6 +32,12 @@ Then deploy the class and run it (`EXEC tSQLt.Run '<Class>'` / `EXEC tSQLt.RunAl
 `reference/running-and-results.md`. Use whatever deploy/run tooling the project provides; check its README
 or `CLAUDE.md`. Iterate until green.
 
+Two habits that keep tests honest:
+- **Write to the spec, not the code.** Assert what the test's name promises (the requirement). A correct
+  test that fails is revealing a bug — don't soften it to match buggy code. See `reference/test-conventions.md`.
+- **Fake minimally.** Insert only the columns the behaviour reads (a single key column is often enough to
+  materialise a row), and fake only the tables/procedures the code touches. See `reference/isolation-and-mocking.md`.
+
 ## A complete example
 ```sql
 EXEC tSQLt.NewTestClass 'MyTests';
@@ -70,7 +76,7 @@ GO
 
 ## Reference
 - `reference/api-catalog.md` — every public procedure/function, grouped, with signatures.
-- `reference/test-conventions.md` — classes, naming, SetUp, transactions, the AAA pattern.
+- `reference/test-conventions.md` — classes, naming, SetUp, the AAA pattern, boundary testing, writing to the spec.
 - `reference/assertions.md` — each assertion and when to use it.
 - `reference/isolation-and-mocking.md` — FakeTable, FakeFunction, SpyProcedure, ApplyConstraint, ApplyTrigger.
 - `reference/running-and-results.md` — Run / RunAll / RunTestClass / RunNew and result formatters.
