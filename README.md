@@ -13,6 +13,33 @@ Cursor, and GitHub Copilot**. No conversion needed.
 |---|---|
 | [`tsqlt-testing`](skills/tsqlt-testing/SKILL.md) | Author, run, and debug [tSQLt](https://tsqlt.org) unit tests for SQL Server — structure tests as Assemble/Act/Assert, fake or spy out dependencies (tables, functions, procedures), assert on query results, expect exceptions, and run suites. |
 
+## See it in action
+
+Load the [tSQLt example database](https://github.com/tSQLt-org/tSQLt/tree/main/Examples) without Tests.sql (let Claude make them instead), then give
+Claude the tests you want by name and let the skill write them:
+
+```text
+can you create the following tsqlt tests for the database tSQLt_Example on my local ms sql server with windows authentication?
+
+[AcceleratorTests].[test ready for experimentation if 2 particles]
+[AcceleratorTests].[test we are not ready for experimentation if there is only 1 particle]
+[AcceleratorTests].[test no particles are in a rectangle when there are no particles in the table]
+[AcceleratorTests].[test a particle within the rectangle is returned]
+[AcceleratorTests].[test a particle within the rectangle is returned with an Id, Point Location and Value]
+[AcceleratorTests].[test a particle is included only if it fits inside the boundaries of the rectangle]
+[AcceleratorTests].[test email is sent if we detected a higgs-boson]
+[AcceleratorTests].[test email is not sent if we detected something other than higgs-boson]
+[AcceleratorTests].[test status message includes the number of particles]
+[AcceleratorTests].[test foreign key violated if Particle color is not in Color table]
+[AcceleratorTests].[test foreign key is not violated if Particle color is in Color table]
+```
+
+From the test names alone, the skill scaffolds the full suite: faking tables, asserting on scalars and
+result sets, spying on the email procedure so no mail is actually sent, checking the status message, and
+verifying the foreign-key constraints. It then runs the class with `tSQLt.Run` and iterates until green.
+
+Learn more about tSQLt at [tsqlt.org](https://tsqlt.org) or on [GitHub](https://github.com/tSQLt-org/tSQLt).
+
 ## Install
 
 ### skills.sh (any supported agent)
