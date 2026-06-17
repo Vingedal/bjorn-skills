@@ -1,6 +1,7 @@
 ---
 name: tsqlt-testing
 description: Author, run, and debug tSQLt unit tests for SQL Server. Use when the user asks to write a SQL unit test, add test coverage for a stored procedure / function / trigger, fake or spy out a dependency (table, function, or procedure), assert on query results, expect an exception, or run a tSQLt suite.
+license: MIT
 ---
 
 # Writing & running tSQLt tests
