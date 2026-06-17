@@ -34,7 +34,15 @@ install the skill you want — **each skill is its own plugin**, so you get only
 /plugin install tsqlt-testing@bjorn-skills
 ```
 
-Update later with `/plugin marketplace update bjorn-skills`.
+Already installed? Pull the latest version and load it into your session:
+
+```text
+/plugin marketplace update bjorn-skills
+/reload-plugins
+```
+
+(Third-party marketplaces don't auto-update, so updating is a manual two-step refresh:
+`marketplace update` refreshes the catalog, `/reload-plugins` loads the new version.)
 
 ### Other agents (Codex CLI, Gemini CLI, Cursor, Copilot)
 
