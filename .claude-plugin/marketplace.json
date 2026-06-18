@@ -14,6 +14,15 @@
       "license": "MIT",
       "keywords": ["tsqlt", "sql-server", "mssql", "unit-testing", "tdd", "database-testing"],
       "homepage": "https://github.com/Vingedal/bjorn-skills"
+    },
+    {
+      "name": "xquik",
+      "source": "./skills/xquik",
+      "description": "Plan and implement Xquik X data extraction, automation, REST API, webhook, and MCP workflows.",
+      "category": "data",
+      "license": "MIT",
+      "keywords": ["xquik", "x-twitter-scraper", "x-api", "twitter", "mcp", "webhooks"],
+      "homepage": "https://docs.xquik.com"
     }
   ]
 }
